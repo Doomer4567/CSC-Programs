@@ -17,5 +17,6 @@ for ((SIZE=20000; SIZE<=40000; SIZE+=1000)); do
     # Calculate the average time
     avg_time=$(echo "scale=5; $total_time / 20" | bc)
     # Output array size and average time to the file
+    echo "$SIZE  $avg_time"
     echo "$SIZE  $avg_time" >> $OUTPUT_FILE
 done
