@@ -113,7 +113,11 @@ Before I leave, brush my teeth with a $UsrWeapon 'Cause when I leave for the nig
 Tryin' on all our clothes, clothes. Boys blowin' up our phones, phones. Drop-toppin', playin' our favorite CDs
 Pullin' up to $UsrMotive Tryna get a little bit tipsy. Don't stop, make it pop DJ, blow my speakers up
 Tonight, I'ma fight 'Til we see the sunlight. Tick-tock on the clock But the party don't stop, no
-Oh, whoa, whoa-oh Oh, whoa, whoa-oh"
+Oh, whoa, whoa-oh Oh, whoa, whoa-oh. Ain't got a care in the world, but got plenty of $UsrWeapon Ain't got no money in my pocket, but I'm already here
+And now the dudes are linin' up 'cause they hear we got swagger But we kick 'em to the curb unless they look like $1
+I'm talkin' 'bout everybody gettin' crunk, crunk Boys try to touch my junk, junk Gonna smack him if he gettin' too drunk, drunk
+Now, now, we go until they kick us out, out Or the guards shut us down, down guards shut us down, down Po-po shut us down"
+
 
 
 
