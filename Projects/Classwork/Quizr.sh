@@ -1,11 +1,15 @@
 #! /bin/bash
 
-strBaseUrl="http://gutendex.com/books/?ids="
-URLarray=curl "$strBaseUrl"
-URLL="$urlArray" | jq 'Length'
-while [ x -lt "$URLL" ];
+strBaseUrl="http://gutendex.com/books/?ids=12,1,14,15"
+URLarray="curl $strBaseUrl"
+URLL=$(echo "$URLarray" | jq 'length')
+count=0
+while [ "$count" -lt "$URLL" ];
 do
-    Title="$URLarray" | jq -r ".[$x].title
-    mkdir "$Title"
+    urg=$(echo "$URLarray" | jq -r .["$x"].title)
+    Title=$(echo "$urg" | tr " " _)
+    mkdir Test/"$Title"
     ((x++))
 done
+
+ls -o
