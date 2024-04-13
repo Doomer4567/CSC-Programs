@@ -10,14 +10,18 @@ class Sandwich:
         return self.Topping
     
     @Topping.setter
-    def Topping(self, Toppings: int):
+    def Topping(self, Toppings):
+        global numToppings
         self.Toppings = Toppings
         numToppings+=1
     
-   
-    def set_Price(self):
-        Price = 3.75 + (0.50 * Toppings)
-        return Price
+    @property
+    def Price(self) -> float:
+        return self.Price
+    
+    @Price.setter
+    def Price(self, Price):
+        Price = 3.75 + (0.50 * numToppings)
 
     def get_OrderNumber(self):
         return OrderNumber
