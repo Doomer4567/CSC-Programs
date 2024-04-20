@@ -1,7 +1,15 @@
+import json
 
 class Contact:
-    def __init__(self) -> dict ():
-        
+    def __init__(self, contact_info: dict):
+        self.__firstname = contact_info.get("FirstName", "")
+        self.__lastname = contact_info.get("LastName", "")
+        self.__title = contact_info.get("Title", "")
+        self.__email = contact_info.get("Email", "")
+        self.__department = contact_info.get("department", "")
+        self.__phone = contact_info.get("PhoneNumber", "")
+        self.__building = contact_info.get("Building", "")
+        self.__last_contact = None
 
     def __str__(self) -> str:
         """
