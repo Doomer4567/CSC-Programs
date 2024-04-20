@@ -1,0 +1,162 @@
+[
+  {
+    "logType": "WARN",
+    "server": "Prod-Exch-01",
+    "contents": "Mailbox 905beb99-e5b0-485a-8476-114766c1978a is nearing capacity"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Prod-Exch-01",
+    "contents": "Encryption failed"
+  },
+  {
+    "logType": "WARN",
+    "server": "Dev-Web-21",
+    "contents": "nodeJS package crypto is out-of-date"
+  },
+  {
+    "logType": "INFO",
+    "server": "Test-Ans-02",
+    "contents": "Automation playbook installGit.yaml completed"
+  },
+  {
+    "logType": "INFO",
+    "server": "Prod-Web-01",
+    "contents": "Server restarted due to maintenance"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Prod-DB-01",
+    "contents": "Database connection lost"
+  },
+  {
+    "logType": "INFO",
+    "server": "Dev-Web-21",
+    "contents": "New version of app deployed successfully"
+  },
+  {
+    "logType": "WARN",
+    "server": "Prod-Exch-01",
+    "contents": "Low disk space on server"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Test-Ans-02",
+    "contents": "Unable to deploy Docker container"
+  },
+  {
+    "logType": "WARN",
+    "server": "Dev-DB-01",
+    "contents": "Database backup failed"
+  },
+  {
+    "logType": "INFO",
+    "server": "Prod-Web-01",
+    "contents": "Load balancer switched traffic to backup server"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Dev-Exch-01",
+    "contents": "Email delivery failure"
+  },
+  {
+    "logType": "WARN",
+    "server": "Test-Ans-02",
+    "contents": "SSH access attempted from unauthorized IP"
+  },
+  {
+    "logType": "INFO",
+    "server": "Prod-DB-01",
+    "contents": "Database upgrade completed"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Prod-Web-01",
+    "contents": "HTTP 500 error on homepage"
+  },
+  {
+    "logType": "WARN",
+    "server": "Dev-Exch-01",
+    "contents": "Mail server certificate expiring soon"
+  },
+  {
+    "logType": "INFO",
+    "server": "Prod-DB-01",
+    "contents": "Database replication setup"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Prod-Exch-01",
+    "contents": "Server outage detected"
+  },
+  {
+    "logType": "WARN",
+    "server": "Dev-Web-21",
+    "contents": "Memory leak detected in application"
+  },
+  {
+    "logType": "INFO",
+    "server": "Test-Ans-02",
+    "contents": "Network firewall rule updated"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Dev-DB-01",
+    "contents": "Disk I/O error on database server"
+  },
+  {
+    "logType": "INFO",
+    "server": "Prod-Web-01",
+    "contents": "New user registration"
+  },
+  {
+    "logType": "WARN",
+    "server": "Test-Ans-02",
+    "contents": "CPU utilization above threshold"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Prod-Exch-01",
+    "contents": "Mail delivery delayed"
+  },
+  {
+    "logType": "INFO",
+    "server": "Dev-Web-21",
+    "contents": "Server monitoring tool updated"
+  },
+  {
+    "logType": "WARN",
+    "server": "Prod-DB-01",
+    "contents": "Disk space usage nearing limit"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Test-Ans-02",
+    "contents": "Database backup corrupted"
+  },
+  {
+    "logType": "INFO",
+    "server": "Prod-Exch-01",
+    "contents": "Email server upgraded"
+  },
+  {
+    "logType": "WARN",
+    "server": "Dev-Web-21",
+    "contents": "SSL certificate expired"
+  },
+  {
+    "logType": "ERROR",
+    "server": "Prod-DB-01",
+    "contents": "Database deadlock detected"
+  },
+  {
+    "logType": "INFO",
+    "server": "Test-Ans-02",
+    "contents": "New version of API released"
+  },
+  {
+    "logType": "WARN",
+    "server": "Prod-Exch-01",
+    "contents": "Network connectivity issues detected"
+  }
+]
