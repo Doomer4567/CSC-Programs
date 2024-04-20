@@ -1,15 +1,58 @@
 import json
 
+
 class Contact:
-    def __init__(self, contact_info: dict):
-        self.__firstname = contact_info.get("FirstName", "")
-        self.__lastname = contact_info.get("LastName", "")
-        self.__title = contact_info.get("Title", "")
-        self.__email = contact_info.get("Email", "")
-        self.__department = contact_info.get("department", "")
-        self.__phone = contact_info.get("PhoneNumber", "")
-        self.__building = contact_info.get("Building", "")
+    def __init__(self, uid: int, firstname: str, lastname: str, email: str, department: str, title: str, phone: str,
+                 building: str, mail_code: str):
+        self.__uid = uid
+        self.__firstname = firstname
+        self.__lastname = lastname
+        self.__title = title
+        self.__email = email
+        self.__department = department
+        self.__phone = phone
+        self.__building = building
+        self.__mail_code = mail_code
         self.__last_contact = None
+
+    @property
+    def firstname(self):
+        return self.__firstname
+
+    @property
+    def lastname(self):
+        return self.__lastname
+
+    @property
+    def uid(self):
+        return self.__uid
+
+    @property
+    def email(self):
+        return self.__email
+
+    @property
+    def department(self):
+        return self.__department
+
+    @property
+    def title(self):
+        return self.__title
+
+    @property
+    def phone(self):
+        return self.__phone
+
+    @property
+    def building(self):
+        return self.__building
+
+    @property
+    def mail_code(self):
+        return self.__mail_code
+
+    def last_contact(self, date):
+        self.__last_contact = date
 
     def __str__(self) -> str:
         """
@@ -35,3 +78,15 @@ class Contact:
             self.__building == other.building and \
             self.__mail_code == other.mail_code and \
             self.__last_contact == other.last_contact
+
+
+def main():
+    with open('contacts.json') as f:
+        contact_data = json.load(f)
+
+    contacts = {}
+    for x in contact_data:
+        new_contact = Contact(x["FirstName"], x["LastName"], x["UID"], x["EmailAddress"], x["Dept"], x["Title"],
+                              x["Phone"], x["Building"], x["POBox"])
+        contacts.update({x["EmailAddress"]: new_contact})
+
