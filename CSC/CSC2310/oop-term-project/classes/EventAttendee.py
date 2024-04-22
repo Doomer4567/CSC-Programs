@@ -12,6 +12,31 @@ For now, the "memo" attribute is a catch-all for these, but in the future, more 
 
 class EventAttendee:
 
+    def __init__(self, contact: str, event: str):
+        self.contact = contact
+        self.event = event
+        self.__memo = ""
+
+    @property
+    def contact(self) -> str:
+        return self.contact
+    @contact.setter
+    def contact(self, ):
+        self.contact = contact
+
+    @property
+    def event(self) -> str:
+        return self.event
+
+    @event.setter
+    def event(self):
+        self.contact = contact
+
+    @property
+    def memo(self):
+        return self.__memo
+
+
     # This function defines what happens when you print the object as text, i.e. print(event_attendee)
     # PRINTS IN THE FORM "John Smith attending Data Science League Meeting"
     def __str__(self):

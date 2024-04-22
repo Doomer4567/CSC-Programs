@@ -1,0 +1,6 @@
+4 sandwhich(es) were added and the total is now $38.00
+17 Pizza(s) were added and the total is now $ 766.40
+4 burger(s) were added and the total is now $824.15
+
+
+The total for your order is $824.15
