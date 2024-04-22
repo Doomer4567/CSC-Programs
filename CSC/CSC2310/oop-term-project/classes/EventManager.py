@@ -15,9 +15,32 @@ class EventManager:
     This class has a list of Event objects, a list of Contact objects, and a list of EventAttendee objects.
     """
     # constructor (1 method)
-
+    def __init__(self):
+        self.Events = []
+        self.Contacts = []
+        self.EventAttendees = []
+        self.EventUID = 0
+        self.ContactUID = 0
     # getters (5 methods)
-
+        @property
+        def Events(self):
+            self.Events
+        
+        @property
+        def Contacts(self):
+            self.Contacts
+        
+        @property
+        def EventAttendees(self):
+            self.EventAttendees
+        
+        @property
+        def EventUID(self):
+            self.EventUID
+        
+        @property
+        def ContactUID(self):
+            self.ContactUID
     # setters (5 methods)
 
     # other methods (6 methods)
