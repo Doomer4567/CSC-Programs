@@ -22,7 +22,7 @@ class EventAttendee:
         return self.contact
     @contact.setter
     def contact(self, ):
-        self.contact = contact
+        self.contact = Contact
 
     @property
     def event(self) -> str:
@@ -30,7 +30,7 @@ class EventAttendee:
 
     @event.setter
     def event(self):
-        self.contact = contact
+        self.event = Event
 
     @property
     def memo(self):
