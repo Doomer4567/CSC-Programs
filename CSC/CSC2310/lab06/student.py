@@ -6,6 +6,7 @@ class Student:
         self.age = age
 
     def get_attendance_rate(self, days_present, total_days):
+        #Try-except statement to avoid divide by zero Error
         try:
             return int(days_present) / int(total_days)
         except ValueError:
@@ -23,12 +24,14 @@ class School:
         self.students.append(student)
 
     def get_student_name(self, index):
+        #Try-Execpt statement that checks for nonexisting objects in a list
         try:
             return self.students[index].name
         except IndexError:
             print("Error: Student index out of range")
             return None
     def get_student_age(self, index):
+        #similiar Try-Execpt statement to the statement above 
         try:
             return self.students[index].age
         except IndexError:
@@ -37,7 +40,7 @@ class School:
 
 def main():
     school = School()
-
+    #Simple Try-Execept statement to check if the file loaded correctly 
     try:
         with open('students.json') as f:
             data = json.load(f)
@@ -48,6 +51,7 @@ def main():
         school.add_student(Student(x['Name'], x['Age']))
 
     while True:
+        #Try-Execept statement to check if the user entered a integer 
         try:
             index = int(input("Enter the index of the student: "))
             name = school.get_student_name(index)
