@@ -1,6 +1,6 @@
-from classes.EventAttendee import EventAttendee
-from classes.Event import Event
-from classes.Contact import Contact
+from EventAttendee import EventAttendee
+from Event import Event
+from Contact import Contact
 
 '''
 This file is where the bulk of your work will be done. 
@@ -8,42 +8,104 @@ I have listed each category of method you will need to create in the comments.
 I have also listed how many methods will appear in each category.
 '''
 
+
 class EventManager:
     """
     This class is meant to manage the Events, Contacts, and Event_Attendees.
     This class also directly communicates with the GUI as the GUI "has" an EventManager object (aggregation).
     This class has a list of Event objects, a list of Contact objects, and a list of EventAttendee objects.
     """
+
     # constructor (1 method)
+
     def __init__(self):
-        self.Events = []
-        self.Contacts = []
-        self.EventAttendees = []
-        self.EventUID = 0
-        self.ContactUID = 0
+        self.events = []
+        self.contacts = []
+        self.eventattendees = []
+        self.eventuid = 0
+        self.contactuid = 0
+
     # getters (5 methods)
-        @property
-        def Events(self):
-            self.Events
-        
-        @property
-        def Contacts(self):
-            self.Contacts
-        
-        @property
-        def EventAttendees(self):
-            self.EventAttendees
-        
-        @property
-        def EventUID(self):
-            self.EventUID
-        
-        @property
-        def ContactUID(self):
-            self.ContactUID
+    @property
+    def events(self):
+        return self.events
+
+    @property
+    def contacts(self):
+        return self.contacts
+
+    @property
+    def eventattendees(self):
+        return self.eventattendees
+
+    @property
+    def eventuid(self):
+        return self.eventuid
+
+    @property
+    def contactuid(self):
+        return self.contactuid
+
     # setters (5 methods)
+    @events.setter
+    def events(self, events):
+        self.events = events
+
+    @contacts.setter
+    def contacts(self, contacts):
+        self.contacts = contacts
+
+    @eventattendees.setter
+    def eventattendees(self, eventattendees):
+        self.eventattendees = eventattendees
+
+    @eventuid.setter
+    def eventuid(self, eventuid):
+        self.eventuid = eventuid
+
+    @contactuid.setter
+    def contactuid(self, contactuid):
+        self.contactuid = contactuid
 
     # other methods (6 methods)
+
+    def add_event(self):
+        self.events = Event
+        self.eventuid += 1
+        self._sort_events()
+
+    def add_contact(self):
+        self.contacts = Contact
+        self.contactuid += 1
+        self._sort_contacts()
+
+    def is_attending(self):
+        for x in self.eventattendees():
+            for y in self.contacts():
+                if x == y:
+                    return True
+                else:
+                    return False
+
+    def add_event_attendee(self):
+        if self.is_attending():
+            return self.events
+        else:
+            return None
+
+    def uid_to_event(self):
+        for x in self.events:
+            if self.events == self.eventuid:
+                return self.events
+            else:
+                return None
+
+    def uid_to_contact(self):
+        for x in self.contacts:
+            if self.contacts == self.contactuid:
+                return self.contacts
+            else:
+                return None
 
     # pre-existing methods (2 methods; they are already here; no need to touch them)
 

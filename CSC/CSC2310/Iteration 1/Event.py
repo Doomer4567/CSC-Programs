@@ -1,9 +1,7 @@
 import json
-
-
 class Event:
 
-    def __init__(self, uid: int, name: str, date: str, start_time: str, location: str, duration: int):
+    def __init__(self, uid: int, name: str, date: str, start_time: str, location: str, duration: int ):
         self.__uid = uid
         self.__name = name
         self.__date = date
@@ -53,7 +51,6 @@ class Event:
             self.__start_time == other.start_time and \
             self.__location == other.location and \
             self.__duration == other.duration
-
 
 def main():
     with open('events.json') as f:

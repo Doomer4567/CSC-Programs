@@ -1,5 +1,5 @@
-from classes.Contact import Contact
-from classes.Event import Event
+from Contact import Contact
+from Event import Event
 
 """
 This class represents a tuple of 1 Event and 1 Contact object, meaning the Contact is attending the Event.
@@ -18,24 +18,24 @@ class EventAttendee:
         self.__memo = ""
 
     @property
-    def contact(self) -> str:
+    def contact(self):
         return self.contact
+
     @contact.setter
-    def contact(self, ):
-        self.contact = Contact
+    def contact(self, contact=Contact):
+        self.contact = contact
 
     @property
-    def event(self) -> str:
+    def event(self):
         return self.event
 
     @event.setter
-    def event(self):
-        self.event = Event
+    def event(self, event=Event):
+        self.event = event
 
     @property
     def memo(self):
         return self.__memo
-
 
     # This function defines what happens when you print the object as text, i.e. print(event_attendee)
     # PRINTS IN THE FORM "John Smith attending Data Science League Meeting"
