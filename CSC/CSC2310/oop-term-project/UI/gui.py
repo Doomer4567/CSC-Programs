@@ -1,12 +1,12 @@
-from classes.Contact import Contact
-from classes.Event import Event
-from classes.EventAttendee import EventAttendee
-from classes.EventManager import EventManager
-from classes.SearchContacts import SearchContacts
+from ..classes.Contact import Contact
+from ..classes.Event import Event
+from ..classes.EventAttendee import EventAttendee
+from ..classes.EventManager import EventManager
+from ..classes.SearchContacts import SearchContacts
 from tkinter import (Tk, LabelFrame, Button, Label, Entry, Variable, Listbox, END, Text, Event as TKEvent, TOP, BOTTOM,
                      LEFT, BOTH, Frame, RIGHT, messagebox)
 from typing import List, Union, TYPE_CHECKING
-from UI.validators import *
+from validators import *
 
 
 class GUI(Tk):

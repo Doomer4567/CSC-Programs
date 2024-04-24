@@ -1,6 +1,6 @@
 from Levenshtein import distance
 from typing import List
-from classes.Contact import Contact
+from Contact import Contact
 
 '''
 This class is used to perform the search function on the Contact List and Event List in the GUI.

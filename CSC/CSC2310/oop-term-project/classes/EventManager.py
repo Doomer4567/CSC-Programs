@@ -1,6 +1,6 @@
-import EventAttendee
-import Event
-import Contact
+from EventAttendee import EventAttendee
+from Event import Event
+from Contact import Contact
 
 '''
 This file is where the bulk of your work will be done. 
