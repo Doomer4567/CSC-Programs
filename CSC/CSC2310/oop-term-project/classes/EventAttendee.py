@@ -1,5 +1,5 @@
-from Contact import Contact
-from Event import Event
+import Contact
+import Event
 
 """
 This class represents a tuple of 1 Event and 1 Contact object, meaning the Contact is attending the Event.

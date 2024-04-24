@@ -1,6 +1,6 @@
-from EventAttendee import EventAttendee
-from Event import Event
-from Contact import Contact
+import EventAttendee
+import Event
+import Contact
 
 '''
 This file is where the bulk of your work will be done. 
@@ -69,40 +69,40 @@ class EventManager:
 
     # other methods (6 methods)
 
-    def add_event(self):
-        self.events = Event
+    def add_event(self, x):
+        self.events = x
         self.eventuid += 1
         self._sort_events()
 
-    def add_contact(self):
-        self.contacts = Contact
+    def add_contact(self, x):
+        self.contacts = x
         self.contactuid += 1
         self._sort_contacts()
 
-    def is_attending(self):
+    def is_attending(self, contact=EventAttendee.contact):
         for x in self.eventattendees():
-            for y in self.contacts():
+            for y in self.contacts(contact):
                 if x == y:
                     return True
                 else:
                     return False
 
-    def add_event_attendee(self):
-        if self.is_attending():
+    def add_event_attendee(self, contact=EventAttendee.contact):
+        if self.is_attending(contact):
             return self.events
         else:
             return None
 
     def uid_to_event(self):
         for x in self.events:
-            if self.events == self.eventuid:
+            if Event.uid == self.eventuid:
                 return self.events
             else:
                 return None
 
     def uid_to_contact(self):
         for x in self.contacts:
-            if self.contacts == self.contactuid:
+            if Contact.uid == self.contactuid:
                 return self.contacts
             else:
                 return None
