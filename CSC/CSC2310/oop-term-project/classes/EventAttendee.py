@@ -22,7 +22,7 @@ class EventAttendee:
         return self.contact
 
     @contact.setter
-    def contact(self, contact=Contact):
+    def contact(self, contact):
         self.contact = contact
 
     @property
@@ -30,12 +30,16 @@ class EventAttendee:
         return self.event
 
     @event.setter
-    def event(self, event=Event):
+    def event(self, event):
         self.event = event
 
     @property
     def memo(self):
         return self.__memo
+    
+    @memo.setter
+    def memo(self, memo):
+        self.memo = memo
 
     # This function defines what happens when you print the object as text, i.e. print(event_attendee)
     # PRINTS IN THE FORM "John Smith attending Data Science League Meeting"

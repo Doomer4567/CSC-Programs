@@ -70,12 +70,12 @@ class EventManager:
     # other methods (6 methods)
 
     def add_event(self, x):
-        self.events = x
+        self.events.append(Event(x))
         self.eventuid += 1
         self._sort_events()
 
     def add_contact(self, x):
-        self.contacts = x
+        self.contacts.append(Contact(x))
         self.contactuid += 1
         self._sort_contacts()
 
