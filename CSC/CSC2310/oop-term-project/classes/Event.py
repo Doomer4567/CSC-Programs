@@ -2,36 +2,36 @@
 class Event:
 
     def __init__(self, event_dict):
-        self.UID = event_dict.get('UID', "")
-        self.Name = event_dict.get('Name', "")
-        self.Date = event_dict.get('Date', "")
-        self.StartTime = event_dict.get('StartTime', "")
-        self.Location = event_dict.get('Location', "")
-        self.Duration = event_dict.get('Duration', "")
+        self.__UID = event_dict.get('UID', "")
+        self.__Name = event_dict.get('Name', "")
+        self.__Date = event_dict.get('Date', "")
+        self.__StartTime = event_dict.get('StartTime', "")
+        self.__Location = event_dict.get('Location', "")
+        self.__Duration = event_dict.get('Duration', "")
 
-        @property
-        def UID(self):
-            return self.UID
-        
-        @property
-        def Name(self):
-            return self.Name
+    @property
+    def UID(self):
+        return self.__UID
 
-        @property
-        def Date(self):
-            return self.Date
+    @property
+    def Name(self):
+        return self.__Name
 
-        @property
-        def StartTime(self):
-            return self.StartTime
-        
-        @property
-        def Location(self):
-            return self.Location
-        
-        @property
-        def Duration(self):
-            return self.Duration
+    @property
+    def Date(self):
+        return self.__Date
+
+    @property
+    def StartTime(self):
+        return self.__StartTime
+
+    @property
+    def Location(self):
+        return self.__Location
+
+    @property
+    def Duration(self):
+        return self.__Duration
 
     # This function defines what happens when you print the object as text i.e., print(Event)
     def __str__(self) -> str:

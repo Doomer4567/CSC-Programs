@@ -14,8 +14,8 @@ For now, the "memo" attribute is a catch-all for these, but in the future, more 
 class EventAttendee:
     def __init__(self, contact, event):
         #
-        self.__contact = contact
-        self.__event = event
+        self.__contact = Contact(contact)
+        self.__event = Event(event)
         self.__memo = ""
 
     @property

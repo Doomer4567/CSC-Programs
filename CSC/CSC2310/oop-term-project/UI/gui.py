@@ -509,8 +509,8 @@ class GUI(Tk):
         count = 0
         # iterate through the `event_attendees` list and check if its event is equal to the event (index in the event
         # list) passed as an argument
-        for event_attendee in self.event_manager.eventAttendees:
-            if event_attendee.event == self.event_manager.events[event]:
+        for eventAttendee in self.event_manager.eventAttendees:
+            if eventAttendee.event == self.event_manager.events[event]:
                 count += 1
         return count
 

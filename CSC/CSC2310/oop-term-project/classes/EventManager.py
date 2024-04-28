@@ -89,7 +89,6 @@ class EventManager:
         self.__contactUID += 1
         self._sort_contacts()
 
-    # finish this shit
     def is_attending(self, contact, event):
         for i in self.__eventAttendees:
             for j in self.contacts:
@@ -98,11 +97,11 @@ class EventManager:
                 else:
                     return False
 
-    def add_event_attendee(self, contact, event):
+    def add_event_attendee(self, event, contact):
         if self.is_attending(self, contact):
             return self.events
         else:
-            EventAttendee(contact, event)
+            EventAttendee(event, contact)
             self.__eventAttendees.append(contact)
             return None
 
