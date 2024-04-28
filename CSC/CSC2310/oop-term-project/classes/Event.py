@@ -1,39 +1,37 @@
-import json
-
 
 class Event:
 
-    def __init__(self, uid: int, name: str, date: str, start_time: str, location: str, duration: int):
-        self.__uid = uid
-        self.__name = name
-        self.__date = date
-        self.__start_time = start_time
-        self.__location = location
-        self.__duration = duration
+    def __init__(self, event_dict):
+        self.UID = event_dict.get('UID', "")
+        self.Name = event_dict.get('Name', "")
+        self.Date = event_dict.get('Date', "")
+        self.StartTime = event_dict.get('StartTime', "")
+        self.Location = event_dict.get('Location', "")
+        self.Duration = event_dict.get('Duration', "")
 
-    @property
-    def uid(self):
-        return self.__uid
+        @property
+        def UID(self):
+            return self.UID
+        
+        @property
+        def Name(self):
+            return self.Name
 
-    @property
-    def name(self):
-        return self.__name
+        @property
+        def Date(self):
+            return self.Date
 
-    @property
-    def date(self):
-        return self.__date
-
-    @property
-    def start_time(self):
-        return self.__start_time
-
-    @property
-    def location(self):
-        return self.__location
-
-    @property
-    def duration(self):
-        return self.__duration
+        @property
+        def StartTime(self):
+            return self.StartTime
+        
+        @property
+        def Location(self):
+            return self.Location
+        
+        @property
+        def Duration(self):
+            return self.Duration
 
     # This function defines what happens when you print the object as text i.e., print(Event)
     def __str__(self) -> str:
@@ -44,22 +42,12 @@ class Event:
         the variables passed into this function will replace each {} (in order)
         """
         return "Event: {}\nDate: {}\nStart time: {}\nDuration: {} hours\nLocation: {}" \
-            .format(self.name, self.date, self.start_time, self.duration, self.location)
+            .format(self.Name, self.Date, self.StartTime, self.Duration, self.Location)
 
     def __eq__(self, other: 'Event') -> bool:
-        return self.__name == other.name and \
-            self.__uid == other.uid and \
-            self.__date == other.date and \
-            self.__start_time == other.start_time and \
-            self.__location == other.location and \
-            self.__duration == other.duration
-
-
-def main():
-    with open('events.json') as f:
-        event_data = json.load(f)
-
-    events = {}
-    for x in event_data:
-        new_event = Event(x["Name"], x["UID"], x["Date"], x["StartTime"], x["Location"], x["Duration"])
-        events.update({x["Name"]: new_event})
+        return self.Name == other.Name and \
+            self.UID == other.UID and \
+            self.Date == other.Date and \
+            self.StartTime == other.StartTime and \
+            self.Location == other.Location and \
+            self.Duration == other.Duration

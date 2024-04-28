@@ -1,16 +1,18 @@
 from Levenshtein import distance
 from typing import List
-from Contact import Contact
+from classes.Contact import Contact
 
 '''
 This class is used to perform the search function on the Contact List and Event List in the GUI.
 You (the student) do not need to do any work here.
 '''
 
+
 class SearchContacts(object):
     """
     Uses Levenshtein distance, a fuzzy string matching algorithm, to search a list of contacts.
     """
+
     @staticmethod
     def search(query: str, contact_list: List[Contact]) -> List[Contact]:
         """
@@ -27,11 +29,11 @@ class SearchContacts(object):
         # Iterate through the list of contacts, finding the edit distance of each attribute
         for contact in contact_list:
             # Build a list of the scores for each attribute
-            scores: List[int] = [distance(str(contact.uid), query), distance(contact.firstname, query),
-                                 distance(contact.lastname, query), distance(contact.email, query),
-                                 distance(contact.department, query), distance(contact.title, query),
-                                 distance(contact.phone, query), distance(contact.building, query),
-                                 distance(contact.mail_code, query), distance(contact.last_contact, query)]
+            scores: List[int] = [distance(str(contact.UID), query), distance(contact.FirstName, query),
+                                 distance(contact.LastName, query), distance(contact.EmailAddress, query),
+                                 distance(contact.Dept, query), distance(contact.Title, query),
+                                 distance(contact.Phone, query), distance(contact.Building, query),
+                                 distance(contact.POBox, query), distance(contact.lastContact, query)]
             # Append to our list of contacts, taking the minimum edit distance score.
             contact_scores.append((min(scores), contact))
 

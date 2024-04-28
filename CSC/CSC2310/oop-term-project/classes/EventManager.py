@@ -1,6 +1,6 @@
-from EventAttendee import EventAttendee
-from Event import Event
-from Contact import Contact
+from classes.EventAttendee import EventAttendee
+from classes.Event import Event
+from classes.Contact import Contact
 
 '''
 This file is where the bulk of your work will be done. 
@@ -17,92 +17,108 @@ class EventManager:
     """
 
     # constructor (1 method)
-
     def __init__(self):
-        self.events = []
-        self.contacts = []
-        self.eventattendees = []
-        self.eventuid = 0
-        self.contactuid = 0
+        self.__events = []
+        self.__contacts = []
+        self.__eventAttendees = []
+        self.__eventUID = 0
+        self.__contactUID = 0
 
     # getters (5 methods)
+    # setters (5 methods)
     @property
     def events(self):
-        return self.events
+        return self.__events
+
+    @events.setter
+    def events(self, newevents):
+        self.__events = newevents
 
     @property
     def contacts(self):
-        return self.contacts
-
-    @property
-    def eventattendees(self):
-        return self.eventattendees
-
-    @property
-    def eventuid(self):
-        return self.eventuid
-
-    @property
-    def contactuid(self):
-        return self.contactuid
-
-    # setters (5 methods)
-    @events.setter
-    def events(self, events):
-        self.events = events
+        return self.__contacts
 
     @contacts.setter
-    def contacts(self, contacts):
-        self.contacts = contacts
+    def contacts(self, newcontacts):
+        self.__contacts = newcontacts
 
-    @eventattendees.setter
-    def eventattendees(self, eventattendees):
-        self.eventattendees = eventattendees
+    @property
+    def eventAttendees(self):
+        return self.__eventAttendees
 
-    @eventuid.setter
-    def eventuid(self, eventuid):
-        self.eventuid = eventuid
+    @eventAttendees.setter
+    def eventAttendees(self, newEventAttendees):
+        self.__eventAttendees = newEventAttendees
 
-    @contactuid.setter
-    def contactuid(self, contactuid):
-        self.contactuid = contactuid
+    @property
+    def eventUID(self):
+        return self.__eventUID
+
+    @eventUID.setter
+    def eventUID(self, newEventUID):
+        self.__eventUID = newEventUID
+
+    @property
+    def contactUID(self):
+        return self.__contactUID
+
+    @contactUID.setter
+    def contactUID(self, newContactUID):
+        self.__contactUID = newContactUID
 
     # other methods (6 methods)
 
-    def add_event(self, x):
-        self.events.append(Event(x))
-        self.eventuid += 1
+    def add_event(self, eventDict):
+        newEventID = Event(eventDict)
+
+        # newEvent = Event(newEventID, eventDict['name'], eventDict['date'], eventDict['start_time'], eventDict[
+        # 'location'], eventDict['duration'])
+
+        self.__events.append(newEventID)
+        self.__eventUID += 1
         self._sort_events()
 
-    def add_contact(self, x):
-        self.contacts.append(Contact(x))
-        self.contactuid += 1
+    def add_contact(self, contactDict):
+        newContact = Contact(contactDict)
+
+        # newContact = Contact(newContactID)  contactDict['lastname'], contactDict['emailaddress'], contactDict[
+        # 'dept'], contactDict['title'], contactDict['phone'], contactDict['building'], contactDict['mailcode'],
+        # contactDict['lastContact'])
+
+        self.__contacts.append(newContact)
+        self.__contactUID += 1
         self._sort_contacts()
 
-    def is_attending(self, contact=EventAttendee.contact):
-        for x in self.eventattendees():
-            for y in self.contacts(contact):
-                if x == y:
+    # finish this shit
+    def is_attending(self, contact, event):
+        for i in self.__eventAttendees:
+            for j in self.contacts:
+                if i == j:
                     return True
                 else:
                     return False
 
-    def add_event_attendee(self, contact=EventAttendee.contact):
-        if self.is_attending(contact):
+    def add_event_attendee(self, contact, event):
+        if self.is_attending(self, contact):
             return self.events
         else:
+            EventAttendee(contact, event)
+            self.__eventAttendees.append(contact)
             return None
 
-    def uid_to_event(self):
-        for x in self.events:
-            if Event.uid == self.eventuid:
+        # newAttendee = EventAttendee(contact, event)
+        # self.__eventAttendees.append(newAttendee)
+
+    def uid_to_event(self, UID):
+        for i in self.events:
+            if UID == self.eventUID:
                 return self.events
             else:
                 return None
 
-    def uid_to_contact(self):
-        for x in self.contacts:
-            if Contact.uid == self.contactuid:
+    def uid_to_contact(self, UID):
+        for i in self.contacts:
+            if Contact.UID == self.contactUID:
                 return self.contacts
             else:
                 return None
@@ -115,11 +131,11 @@ class EventManager:
         :returns: None
         """
         # sort the list by lastname (alphabetically)
-        self.contacts.sort(key=lambda x: x.lastname)
+        self.contacts.sort(key=lambda x: x.LastName)
 
     def _sort_events(self) -> None:
         """
         Sort the stored events by date
         :returns: None
         """
-        self.events.sort(key=lambda x: x.date, reverse=False)
+        self.events.sort(key=lambda x: x.Date, reverse=False)

@@ -1,66 +1,67 @@
-import json
-
-
 class Contact:
-    def __init__(self, uid: int, firstname: str, lastname: str, email: str, department: str, title: str, phone: str,
-                 building: str, mail_code: str):
-        self.__uid = uid
-        self.__firstname = firstname
-        self.__lastname = lastname
-        self.__title = title
-        self.__email = email
-        self.__department = department
-        self.__phone = phone
-        self.__building = building
-        self.__mail_code = mail_code
-        self.__last_contact = None
+    def __init__(self, contact_dict):
+        self.__UID = contact_dict.get('UID', "")
+        self.__FirstName = contact_dict.get('FirstName', "")
+        self.__LastName = contact_dict.get('LastName', "")
+        self.__EmailAddress = contact_dict.get('EmailAddress', "")
+        self.__Dept = contact_dict.get('Dept', "")
+        self.__Title = contact_dict.get('Title', "")
+        self.__Phone = contact_dict.get('Phone', "")
+        self.__Building = contact_dict.get('Building', "")
+        self.__POBox = contact_dict.get('POBox', "")
+        self._lastContact = contact_dict.get('lastContact', "")
 
     @property
-    def firstname(self):
-        return self.__firstname
+    def UID(self):
+        return self.__UID
 
     @property
-    def lastname(self):
-        return self.__lastname
+    def FirstName(self):
+        return self.__FirstName
 
     @property
-    def uid(self):
-        return self.__uid
+    def LastName(self):
+        return self.__LastName
 
     @property
-    def email(self):
-        return self.__email
+    def EmailAddress(self):
+        return self.__EmailAddress
 
     @property
-    def department(self):
-        return self.__department
+    def Dept(self):
+        return self.__Dept
 
     @property
-    def title(self):
-        return self.__title
+    def Title(self):
+        return self.__Title
 
     @property
-    def phone(self):
-        return self.__phone
+    def Phone(self):
+        return self.__Phone
 
     @property
-    def building(self):
-        return self.__building
+    def Building(self):
+        return self.__Building
 
     @property
-    def mail_code(self):
-        return self.__mail_code
+    def POBox(self):
+        return self.__POBox
 
-    def last_contact(self, date):
-        self.__last_contact = date
+    @property
+    def lastContact(self):
+        return self._lastContact
+
+    @lastContact.setter
+    def lastContact(self, value):
+        self._lastContact = value
 
     def __str__(self) -> str:
         """
         Dunder method that defines what happens when you print a Contact object.
         :return: String defining the object
         """
-        return f"{self.__firstname} {self.__lastname}\nTitle: {self.__title}\nEmail: {self.__email}\nDepartment: " \
-               f"{self.__department}\nPhone: {self.__phone}\nBuilding: {self.__building}\nLDC: {self.__last_contact}"
+        return f"{self.__FirstName} {self.__LastName}\nTitle: {self.__Title}\nEmail: {self.__EmailAddress}\nDepartment: " \
+               f"{self.__Dept}\nPhone: {self.__Phone}\nBuilding: {self.__Building}\nLDC: {self._lastContact}"
 
     def __eq__(self, other: 'Contact') -> bool:  # Using quotes around the type allows for typing of this class here
         """
@@ -68,25 +69,13 @@ class Contact:
         :param other: Another contact object.
         :return: Equality evaluation.
         """
-        return self.__uid == other.uid and \
-            self.__firstname == other.firstname and \
-            self.__lastname == other.lastname and \
-            self.__email == other.email and \
-            self.__department == other.department and \
-            self.__title == other.title and \
-            self.__phone == other.phone and \
-            self.__building == other.building and \
-            self.__mail_code == other.mail_code and \
-            self.__last_contact == other.last_contact
-
-
-def main():
-    with open('contacts.json') as f:
-        contact_data = json.load(f)
-
-    contacts = {}
-    for x in contact_data:
-        new_contact = Contact(x["FirstName"], x["LastName"], x["UID"], x["EmailAddress"], x["Dept"], x["Title"],
-                              x["Phone"], x["Building"], x["POBox"])
-        contacts.update({x["EmailAddress"]: new_contact})
-
+        return self.__UID == other.UID and \
+            self.__FirstName == other.__FirstName and \
+            self.__LastName == other.__LastName and \
+            self.__EmailAddress == other.EmailAddress and \
+            self.__Dept == other.Dept and \
+            self.__Title == other.Title and \
+            self.__Phone == other.Phone and \
+            self.__Building == other.Building and \
+            self.__POBox == other.POBox and \
+            self._lastContact == other.lastContact

@@ -1,12 +1,12 @@
-from ..classes.Contact import Contact
-from ..classes.Event import Event
-from ..classes.EventAttendee import EventAttendee
-from ..classes.EventManager import EventManager
-from ..classes.SearchContacts import SearchContacts
+from classes.Contact import Contact
+from classes.Event import Event
+from classes.EventAttendee import EventAttendee
+from classes.EventManager import EventManager
+from classes.SearchContacts import SearchContacts
 from tkinter import (Tk, LabelFrame, Button, Label, Entry, Variable, Listbox, END, Text, Event as TKEvent, TOP, BOTTOM,
                      LEFT, BOTH, Frame, RIGHT, messagebox)
 from typing import List, Union, TYPE_CHECKING
-from validators import *
+from UI.validators import *
 
 
 class GUI(Tk):
@@ -254,7 +254,7 @@ class GUI(Tk):
         a = {
             "FirstName": self.firstname_entry.get(),
             "LastName": self.lastname_entry.get(),
-            "UID": self.event_manager.contact_uid,
+            "UID": self.event_manager.contactUID,
             "EmailAddress": self.email_entry.get(),
             "Dept": self.department_entry.get(),
             "Title": self.title_entry.get(),
@@ -334,7 +334,7 @@ class GUI(Tk):
         a = {
             "Name": self.event_name_entry.get(),
             "Date": self.event_date_entry.get(),
-            "UID": self.event_manager.event_uid,
+            "UID": self.event_manager.eventUID,
             "StartTime": self.event_start_time_entry.get(),
             "Location": self.event_location_entry.get(),
             "Duration": int(self.event_duration_entry.get())
@@ -375,10 +375,10 @@ class GUI(Tk):
         # get a list of contacts' first and last names
         if not query:
             for x in self.event_manager.contacts:
-                self.contact_list.append(f"{x.lastname}, {x.firstname}")
+                self.contact_list.append(f"{x.LastName}, {x.FirstName}")
         else:
             for x in self.contact_search.search(query, self.event_manager.contacts):
-                self.contact_list.append(f"{x.lastname}, {x.firstname}")
+                self.contact_list.append(f"{x.LastName}, {x.FirstName}")
         list_items = Variable(value=self.contact_list)
         self.listbox = Listbox(self.frame, width=25, height=len(self.contact_list), font=(self.font, self.fontsize),
                                listvariable=list_items)
@@ -410,7 +410,7 @@ class GUI(Tk):
         contact_str = self.contact_list[selected_index]
         contact = None
         for contact_object in self.event_manager.contacts:
-            if f"{contact_object.lastname}, {contact_object.firstname}" == contact_str:
+            if f"{contact_object.LastName}, {contact_object.FirstName}" == contact_str:
                 contact = contact_object
         if not contact:
             contact = self.event_manager.contacts[0]
@@ -426,7 +426,7 @@ class GUI(Tk):
         self.last_contact_entry = Entry(self.frame)
         self.last_contact_entry.pack()
         # set the last point of contact entry box to the contacts attribute "last_contact"
-        self.last_contact_entry.insert(END, contact.last_contact)
+        self.last_contact_entry.insert(END, contact.lastContact)
         # This button will save the last_contact_entry's text to the contacts "last_contact" attribute
         self.last_contact_button = Button(self.frame, text="Update Last Point of Contact", font=(self.font, 10),
                                           command=lambda: self.set_last_contact(contact))
@@ -450,7 +450,7 @@ class GUI(Tk):
         event_list = []
         # get a list of contacts in the form of first and last names
         for x in self.event_manager.events:
-            event_list.append(f"{x.date}: {x.name}")
+            event_list.append(f"{x.Date}: {x.Name}")
         list_items = Variable(value=event_list)
         self.listbox_events = Listbox(self.frame, width=50, height=len(event_list), font=(self.font, self.fontsize),
                                       listvariable=list_items)
@@ -490,7 +490,7 @@ class GUI(Tk):
         self.button_list_attendees_going.pack()
 
         # disables the "Current Attendees" button if there are no attendees for the event, else enable it
-        if self.attendee_count_for_event(self.current_event) == 0:
+        if self.attendee_count_for_event(self.current_event) <= 0:
             self.button_list_attendees_going["state"] = "disabled"
         else:
             self.button_list_attendees_going["state"] = "normal"
@@ -509,7 +509,7 @@ class GUI(Tk):
         count = 0
         # iterate through the `event_attendees` list and check if its event is equal to the event (index in the event
         # list) passed as an argument
-        for event_attendee in self.event_manager.event_attendees:
+        for event_attendee in self.event_manager.eventAttendees:
             if event_attendee.event == self.event_manager.events[event]:
                 count += 1
         return count
@@ -601,8 +601,8 @@ class GUI(Tk):
         # list all the contacts in the event manager's contact list
         for x in self.event_manager.contacts:
             if not self.event_manager.is_attending(x, self.event_manager.events[self.current_event]):
-                attendee_list.append(f"{x.lastname}, {x.firstname}")
-                self.uid_list.append(x.uid)
+                attendee_list.append(f"{x.LastName}, {x.FirstName}")
+                self.uid_list.append(x.UID)
         # take the list of contacts and assign it to the listbox variable
         list_items = Variable(value=attendee_list)
         # define listbox
