@@ -20,107 +20,93 @@ class EventManager:
     def __init__(self):
         self.__events = []
         self.__contacts = []
-        self.__eventAttendees = []
-        self.__eventUID = 0
-        self.__contactUID = 0
+        self.__event_attendees = []
+        self.__event_uid = 0
+        self.__contact_uid = 0
 
     # getters (5 methods)
-    # setters (5 methods)
     @property
-    def events(self):
+    def events(self) -> list[Event]:
         return self.__events
 
-    @events.setter
-    def events(self, newevents):
-        self.__events = newevents
-
     @property
-    def contacts(self):
+    def contacts(self) -> list[Contact]:
         return self.__contacts
 
+    @property
+    def event_attendees(self) -> list[EventAttendee]:
+        return self.__event_attendees
+
+    @property
+    def event_uid(self) -> int:
+        return self.__event_uid
+
+    @property
+    def contact_uid(self) -> int:
+        return self.__contact_uid
+
+    # setters (5 methods)
+    @events.setter
+    def events(self, events: list[Event]):
+        self.__events = events
+
     @contacts.setter
-    def contacts(self, newcontacts):
-        self.__contacts = newcontacts
+    def contacts(self, contacts: list[Contact]):
+        self.__contacts = contacts
 
-    @property
-    def eventAttendees(self):
-        return self.__eventAttendees
+    @event_attendees.setter
+    def event_attendees(self, event_attendees: list[EventAttendee]):
+        self.__event_attendees = event_attendees
 
-    @eventAttendees.setter
-    def eventAttendees(self, newEventAttendees):
-        self.__eventAttendees = newEventAttendees
+    @event_uid.setter
+    def event_uid(self, event_uid: int):
+        self.__event_uid = event_uid
 
-    @property
-    def eventUID(self):
-        return self.__eventUID
-
-    @eventUID.setter
-    def eventUID(self, newEventUID):
-        self.__eventUID = newEventUID
-
-    @property
-    def contactUID(self):
-        return self.__contactUID
-
-    @contactUID.setter
-    def contactUID(self, newContactUID):
-        self.__contactUID = newContactUID
+    @contact_uid.setter
+    def contact_uid(self, contact_uid: int):
+        self.__contact_uid = contact_uid
 
     # other methods (6 methods)
 
-    def add_event(self, eventDict):
-        newEventID = Event(eventDict)
-
-        # newEvent = Event(newEventID, eventDict['name'], eventDict['date'], eventDict['start_time'], eventDict[
-        # 'location'], eventDict['duration'])
-
-        self.__events.append(newEventID)
-        self.__eventUID += 1
+    #After an Event gets made this function appends it to the EventManager's
+    #events list and gives it a uid then increasing the uid and sort it into the events list
+    def add_event(self, event: dict):
+        new_event = Event(event)
+        self.events.append(new_event)
+        self.event_uid += 1
         self._sort_events()
 
-    def add_contact(self, contactDict):
-        newContact = Contact(contactDict)
-
-        # newContact = Contact(newContactID)  contactDict['lastname'], contactDict['emailaddress'], contactDict[
-        # 'dept'], contactDict['title'], contactDict['phone'], contactDict['building'], contactDict['mailcode'],
-        # contactDict['lastContact'])
-
-        self.__contacts.append(newContact)
-        self.__contactUID += 1
+    #similar to the add_event method
+    def add_contact(self, contact: dict):
+        new_contact = Contact(contact)
+        self.contacts.append(new_contact)
+        self.contact_uid += 1
         self._sort_contacts()
 
-    def is_attending(self, contact, event):
-        for i in self.__eventAttendees:
-            for j in self.contacts:
-                if i == j:
-                    return True
-                else:
-                    return False
+    #checks to see if the contact is already attending 
+    def is_attending(self, contact: Contact, event: Event):
+        for attendee in self.event_attendees:
+            if attendee.contact == contact and attendee.event == event:
+                return True
+        return False
+    #uses the is_attending method to check if a contact is attending and if returned false then adds the contact to the list
+    def add_event_attendee(self, event: Event, contact: Contact):
+        if not self.is_attending(contact, event):
+            attendee = EventAttendee(contact, event)
+            self.event_attendees.append(attendee)
 
-    def add_event_attendee(self, event, contact):
-        if self.is_attending(self, contact):
-            return self.events
-        else:
-            EventAttendee(event, contact)
-            self.__eventAttendees.append(contact)
-            return None
-
-        # newAttendee = EventAttendee(contact, event)
-        # self.__eventAttendees.append(newAttendee)
-
-    def uid_to_event(self, UID):
-        for i in self.events:
-            if UID == self.eventUID:
-                return self.events
-            else:
-                return None
-
-    def uid_to_contact(self, UID):
-        for i in self.contacts:
-            if Contact.UID == self.contactUID:
-                return self.contacts
-            else:
-                return None
+    #gives the event a uid
+    def uid_to_event(self, uid: int):
+        for event in self.events:
+            if uid == event.uid:
+                return event
+        return None
+    #give the contact a uid
+    def uid_to_contact(self, uid: int):
+        for contact in self.contacts:
+            if uid == contact.UID:
+                return contact
+        return None
 
     # pre-existing methods (2 methods; they are already here; no need to touch them)
 

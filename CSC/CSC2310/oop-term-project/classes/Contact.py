@@ -1,15 +1,15 @@
 class Contact:
-    def __init__(self, contact_dict):
-        self.__UID = contact_dict.get('UID', "")
-        self.__FirstName = contact_dict.get('FirstName', "")
-        self.__LastName = contact_dict.get('LastName', "")
-        self.__EmailAddress = contact_dict.get('EmailAddress', "")
-        self.__Dept = contact_dict.get('Dept', "")
-        self.__Title = contact_dict.get('Title', "")
-        self.__Phone = contact_dict.get('Phone', "")
-        self.__Building = contact_dict.get('Building', "")
-        self.__POBox = contact_dict.get('POBox', "")
-        self._lastContact = contact_dict.get('lastContact', "")
+    def __init__(self, contact: dict):
+        self.__UID = contact.get('UID', "")
+        self.__FirstName = contact.get('FirstName', "")
+        self.__LastName = contact.get('LastName', "")
+        self.__EmailAddress = contact.get('EmailAddress', "")
+        self.__Dept = contact.get('Dept', "")
+        self.__Title = contact.get('Title', "")
+        self.__Phone = contact.get('Phone', "")
+        self.__Building = contact.get('Building', "")
+        self.__POBox = contact.get('POBox', "")
+        self._lastContact = ""
 
     @property
     def UID(self):
@@ -52,7 +52,7 @@ class Contact:
         return self._lastContact
 
     @lastContact.setter
-    def lastContact(self, value):
+    def lastContact(self, value: str):
         self._lastContact = value
 
     def __str__(self) -> str:

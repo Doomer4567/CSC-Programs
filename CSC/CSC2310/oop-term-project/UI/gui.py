@@ -254,7 +254,7 @@ class GUI(Tk):
         a = {
             "FirstName": self.firstname_entry.get(),
             "LastName": self.lastname_entry.get(),
-            "UID": self.event_manager.contactUID,
+            "UID": self.event_manager.contact_uid,
             "EmailAddress": self.email_entry.get(),
             "Dept": self.department_entry.get(),
             "Title": self.title_entry.get(),
@@ -334,7 +334,7 @@ class GUI(Tk):
         a = {
             "Name": self.event_name_entry.get(),
             "Date": self.event_date_entry.get(),
-            "UID": self.event_manager.eventUID,
+            "UID": self.event_manager.event_uid,
             "StartTime": self.event_start_time_entry.get(),
             "Location": self.event_location_entry.get(),
             "Duration": int(self.event_duration_entry.get())
@@ -438,7 +438,7 @@ class GUI(Tk):
         :param contact: Contact object
         :return: None
         """
-        contact.last_contact = self.last_contact_entry.get()
+        contact.lastContact = self.last_contact_entry.get()
 
     def display_events(self) -> None:
         """
@@ -490,7 +490,7 @@ class GUI(Tk):
         self.button_list_attendees_going.pack()
 
         # disables the "Current Attendees" button if there are no attendees for the event, else enable it
-        if self.attendee_count_for_event(self.current_event) <= 0:
+        if self.attendee_count_for_event(self.current_event) == 0:
             self.button_list_attendees_going["state"] = "disabled"
         else:
             self.button_list_attendees_going["state"] = "normal"
@@ -509,8 +509,8 @@ class GUI(Tk):
         count = 0
         # iterate through the `event_attendees` list and check if its event is equal to the event (index in the event
         # list) passed as an argument
-        for eventAttendee in self.event_manager.eventAttendees:
-            if eventAttendee.event == self.event_manager.events[event]:
+        for event_attendee in self.event_manager.event_attendees:
+            if event_attendee.event == self.event_manager.events[event]:
                 count += 1
         return count
 
@@ -524,8 +524,8 @@ class GUI(Tk):
         # check who all is going to the event, i.e., event_attendees in the list
         for x in self.event_manager.event_attendees:
             if x.event == self.event_manager.events[self.current_event]:
-                attendee_list.append(f"{x.contact.lastname}, {x.contact.firstname}")
-                self.uid_list.append(x.contact.uid)
+                attendee_list.append(f"{x.contact.LastName}, {x.contact.FirstName}")
+                self.uid_list.append(x.contact.UID)
 
         list_items = Variable(value=attendee_list)
 
@@ -650,7 +650,8 @@ class GUI(Tk):
 
         self.listbox_contacts.destroy()
 
-    def invalid_input(self, what: str) -> None:
+    @staticmethod
+    def invalid_input(what: str) -> None:
         """
         Makes an error message.
         :param what: What the error is for.
