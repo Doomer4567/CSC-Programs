@@ -1,11 +1,8 @@
-def sum13(nums):
-  num = 0
-  i = -1
-  for x in nums:
-    if x != 13 and nums[i] != 13:
-      num += x
-    i+=1  
-  print(num)
+num = 34
+L = 0
+Sum = 0
 
-
-sum13([13, 1, 2, 13, 2, 1, 13])
+while L != num:
+  Sum += (1+(4*L))
+  L += 1
+print(Sum)
