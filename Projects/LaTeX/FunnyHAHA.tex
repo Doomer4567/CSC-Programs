@@ -2,18 +2,17 @@
 \usepackage{geometry}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{mathtools}
 
 \title{Exam 2 Proofs}
 \author{}
 \date{}
 
+\NewDocumentCommand{\ceil}{s O{} m}{%
+	\IfBooleanTF{#1} % starred
+	{\left\lceil#3\right\rceil} % \ceil*[..]{..}
+	{#2\lceil#3#2\rceil} % \ceil[..]{..}
+}
 \begin{document}
-	\normalsize
-	Exam 2 - Question 29 \\
-	1. (A - B) $\cup$ $\overline{A}$ = $\overline{A \cap B}$ \quad / Given \\
-	2. (A $\cap$ $\overline{B}$) $\cup$ $\overline{A}$ \qquad \quad \quad \space/ Set Subtraction law \\
-	3. ($\overline{A}$ $\cup$ A) $\cap$ ($\overline{A}$ $\cup$ $\overline{B}$) \enspace \enspace / Distribution Law \\
-	4. U $\cap$ ($\overline{A}$ $\cup$ $\overline{B}$) \qquad \quad \enspace / Complement Law \\
-	4. $\overline{A}$ $\cup$ $\overline{B}$ \qquad \qquad \qquad / Identity Law \\
-	5. $\overline{A \cup B}$  \qquad  \qquad \qquad / De Morgan's Law 
+	\[\ceil[\big]{x} \quad \ceil[\Big]{x} \quad \ceil[\bigg]{x} \quad \ceil[\Bigg]{x} \quad \ceil*[\big]{\frac{1}{2}}\]
 \end{document}

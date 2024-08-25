@@ -1,0 +1,40 @@
+\documentclass{article}
+\usepackage{amsmath, amsfonts, amssymb, geometry, xcolor, hyperref}
+
+\begin{document}
+	
+	\begin{gather*}
+		\text{Original Expression:  |  }   (xy + z)^\complement(x + z) \\
+		\text{} \\
+		\text{Apply De Morgan's Law to } (xy + z)^\complement: \\
+		(xy + z)^\complement = (xy)^\complement \cdot z^\complement \quad \text{(De Morgan's Law)} \\
+		\text{} \\
+		\text{Apply De Morgan's Law to } (xy)^\complement: \\
+		(xy)^\complement = x^\complement + y^\complement \quad \text{(De Morgan's Law)} \\
+		(xy + z)^\complement = (x^\complement + y^\complement) \cdot z^\complement \\
+		\text{} \\
+		\text{Substitute into the original expression:} \\
+		(x^\complement + y^\complement) \cdot z^\complement \cdot (x + z) \\
+		\text{} \\
+		\text{Distribute } (x^\complement + y^\complement) \cdot z^\complement \text{ over } (x + z): \\
+		[(x^\complement + y^\complement) \cdot z^\complement \cdot x] + [(x^\complement + y^\complement) \cdot z^\complement \cdot z] \quad \text{(Distributive Law)} \\
+		\text{} \\
+		\text{Simplify the terms:} \\
+		(x^\complement \cdot z^\complement \cdot x) + (y^\complement \cdot z^\complement \cdot x) \quad \text{(Distributive Law)} \\
+		\text{} \\
+		x^\complement \cdot z^\complement \cdot x = 0 \quad \text{(Complement Law)} \\
+		y^\complement \cdot z^\complement \cdot x \\
+		\text{} \\
+		\text{For the second term:} \\
+		(x^\complement \cdot z^\complement \cdot z) + (y^\complement \cdot z^\complement \cdot z) \quad
+		\text{(Distributive Law)} \\
+		\text{} \\
+		x^\complement \cdot z^\complement \cdot z = 0 \quad \text{(Complement Law)} \\
+		\text{} \\
+		y^\complement \cdot z^\complement \cdot z = 0 \quad \text{(Complement Law)} \\
+		\text{} \\
+		\text{Combine the results:} \\
+		y^\complement \cdot z^\complement \cdot x
+	\end{gather*}
+	
+\end{document}
