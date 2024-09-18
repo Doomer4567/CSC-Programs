@@ -42,9 +42,9 @@ int main()
 
     // input statements to give variables values
     cout << "********** Life Expectancy Calculator **********" << endl;
-
     cout << "Enter your name: ";
-    getline(cin, userName);
+    cin >> userName;
+    cin.ignore();
     cout << endl;
 
     cout << "Enter your current age: ";
