@@ -30,6 +30,9 @@ double find_min_count(std::vector<std::vector<vertex_t> > adj_matrix, vertex_t s
 		return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
 		if(num_of_nodes == accessed_nodes){
 			break;
+		} else if(num_of_nodes < accessed_nodes){
+			accessed_nodes--;
+			break;
 		}
 	}
 	return min_cost;
