@@ -24,8 +24,15 @@ fn main() {
 
         match input {
             1 => 
+                List.println();
+                List.MergeSort();
+                List.println();
+                break;
 
             2 => 
+                List.SelectionSort;
+                List.println();
+                break;
 
             _ => println!("Invalid Choice, Try Again!")
         }
