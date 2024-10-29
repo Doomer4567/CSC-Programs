@@ -19,6 +19,22 @@
 typedef std::size_t vertex_t;
 typedef std::tuple<vertex_t,vertex_t,double> weighted_edge_t;
 
+
+double find_min_count(std::vector<std::vector<vertex_t> > adj_matrix, vertex_t src, int num_of_nodes, int &accessed_nodes){
+	//for loop to go through array
+	//recursive with destination
+	double min_cost;
+	for(vertex_t i = src; i < adj_matrix.max_size();i++){
+		accessed_nodes++;
+		min_cost += adj_matrix[i][2];
+		return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
+		if(num_of_nodes == accessed_nodes){
+			break;
+		}
+	}
+	return min_cost;
+}
+
 /* Get the source of a weighted edge.
  *
  * This function returns the source of a weighted edge.
@@ -103,37 +119,26 @@ double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices) {
 	/* IMPLEMENT THIS FUNCTION */
 	std::vector<std::vector<vertex_t> > adj_matrix;
 
-	std::vector<vertex_t> vec_node;
-
+	std::vector<vertex_t> temp_vec_node;
+	int num_of_nodes = 0;
 	for(vertex_t i = 0; i < edges.max_size(); i++){
 		//grabs the src,dst,wt from edges and pushes it into a vector
-		vec_node.push_back(get_source(edges[i]));
-		vec_node.push_back(get_destination(edges[i]));
-		vec_node.push_back(get_weight(edges[i]));
+		temp_vec_node.push_back(get_source(edges[i]));
+		temp_vec_node.push_back(get_destination(edges[i]));
+		temp_vec_node.push_back(get_weight(edges[i]));
 		//it then pushes that data into a matrix
-		adj_matrix.push_back(vec_node);
+		adj_matrix.push_back(temp_vec_node);
 		//quick while command to empty out the vector for the next set of data
-		while(!vec_node.empty()) { vec_node.pop_back(); }
+		while(!temp_vec_node.empty()) { temp_vec_node.pop_back(); }
 	}
+
+	//quick for loop to find the number of nodes in the graph
+	for(int i = 0; i < adj_matrix.max_size(); i++){ if(adj_matrix[i][0] != adj_matrix[i-1][0]){ num_of_nodes++; } }
 	
-	vertex_t Home_Node = adj_matrix[0][0];
-	double min_cost = 0;
-	double wt = adj_matrix[0][3];
-	for(vertex_t i = 0; i < adj_matrix.max_size(); i++){
-		if(adj_matrix[i][0] == adj_matrix[i-1][0] && adj_matrix[i][3] < wt){
-			wt = adj_matrix[i][3];
-		} else if (adj_matrix[i][0] != adj_matrix[i-1][0]) {
-			min_cost += wt;
-			wt = adj_matrix[i][3];
-		}
-	}
+	//starts out function to find the min cost
+	find_min_count(adj_matrix,adj_matrix[0][0],num_of_nodes,'0');
 
-	if(min_cost > 0){
-		return min_cost;
-	}
-
-
-	min_cost = std::numeric_limits<double>::infinity();
+	double min_cost = std::numeric_limits<double>::infinity();
 	return min_cost;
 }
 
