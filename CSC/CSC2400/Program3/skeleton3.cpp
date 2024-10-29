@@ -105,7 +105,7 @@ double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices) {
 
 	std::vector<vertex_t> vec_node;
 
-	for(int i = 0; i < edges.size(); i++){
+	for(vertex_t i = 0; i < edges.max_size(); i++){
 		//grabs the src,dst,wt from edges and pushes it into a vector
 		vec_node.push_back(get_source(edges[i]));
 		vec_node.push_back(get_destination(edges[i]));
@@ -113,24 +113,23 @@ double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices) {
 		//it then pushes that data into a matrix
 		adj_matrix.push_back(vec_node);
 		//quick while command to empty out the vector for the next set of data
-		while(vec_node.empty()) { vec_node.pop_back(); }
+		while(!vec_node.empty()) { vec_node.pop_back(); }
 	}
 	
 	vertex_t Home_Node = adj_matrix[0][0];
 	double min_cost = 0;
 	double wt = adj_matrix[0][3];
-	for(int i = 1; i < adj_matrix.max_size(); i++){
+	for(vertex_t i = 0; i < adj_matrix.max_size(); i++){
 		if(adj_matrix[i][0] == adj_matrix[i-1][0] && adj_matrix[i][3] < wt){
 			wt = adj_matrix[i][3];
 		} else if (adj_matrix[i][0] != adj_matrix[i-1][0]) {
 			min_cost += wt;
 			wt = adj_matrix[i][3];
 		}
-		if(adj_matrix[i][0] == Home_Node && adj_matrix[0][1] == Home_Node){
-			break;
-		} else if (adj_matrix[i][1] == Home_Node) {
-			return min_cost;
-		}
+	}
+
+	if(min_cost > 0){
+		return min_cost;
 	}
 
 
