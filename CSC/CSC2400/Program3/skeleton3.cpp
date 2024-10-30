@@ -20,24 +20,6 @@ typedef std::size_t vertex_t;
 typedef std::tuple<vertex_t,vertex_t,double> weighted_edge_t;
 
 
-double find_min_count(std::vector<std::vector<vertex_t> > adj_matrix, vertex_t src, int num_of_nodes, int &accessed_nodes){
-	//for loop to go through array
-	//recursive with destination
-	double min_cost;
-	for(vertex_t i = src; i < adj_matrix.max_size();i++){
-		accessed_nodes++;
-		min_cost += adj_matrix[i][2];
-		return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
-		if(num_of_nodes == accessed_nodes){
-			break;
-		} else if(num_of_nodes < accessed_nodes){
-			accessed_nodes--;
-			break;
-		}
-	}
-	return min_cost;
-}
-
 /* Get the source of a weighted edge.
  *
  * This function returns the source of a weighted edge.
@@ -113,18 +95,37 @@ std::vector<weighted_edge_t> read_graph(const std::string &filename);
  * */
 double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices);
 
-
-
-
-
+double find_min_count(std::vector<std::vector<vertex_t> > adj_matrix, vertex_t src, int num_of_nodes, int &accessed_nodes){
+	double min_cost = 0;
+	//debug statement
+	for(vertex_t i = src; i < adj_matrix.size();i++){
+		accessed_nodes += 1;
+		min_cost += adj_matrix[i][2];
+		//debug statement
+		std::cout << "Got Here " << min_cost << std::endl;
+		return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
+		if(num_of_nodes == accessed_nodes){
+			//debug statement
+			std::cout << "Got Here 2" << std::endl;
+			break;
+		} else if(num_of_nodes < accessed_nodes || num_of_nodes > accessed_nodes){
+			//debug statement
+			std::cout << "Got Here 3" << std::endl;
+			accessed_nodes--;
+			break;
+		}
+	}
+	return min_cost;
+}
 
 double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices) {
-	/* IMPLEMENT THIS FUNCTION */
+	
 	std::vector<std::vector<vertex_t> > adj_matrix;
 
 	std::vector<vertex_t> temp_vec_node;
+
 	int num_of_nodes = 0;
-	for(vertex_t i = 0; i < edges.max_size(); i++){
+	for(vertex_t i = 0; i < edges.size(); i++){
 		//grabs the src,dst,wt from edges and pushes it into a vector
 		temp_vec_node.push_back(get_source(edges[i]));
 		temp_vec_node.push_back(get_destination(edges[i]));
@@ -136,10 +137,14 @@ double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices) {
 	}
 
 	//quick for loop to find the number of nodes in the graph
-	for(int i = 0; i < adj_matrix.max_size(); i++){ if(adj_matrix[i][0] != adj_matrix[i-1][0]){ num_of_nodes++; } }
+	for(vertex_t i = 1; i < adj_matrix.size(); i++){ if(adj_matrix[i][0] != adj_matrix[i-1][0]){ num_of_nodes++; } }
+	int accessed_nodes = 0;
+
+	//debug statement
+
 	
 	//starts out function to find the min cost
-	find_min_count(adj_matrix,adj_matrix[0][0],num_of_nodes,'0');
+	find_min_count(adj_matrix,adj_matrix[0][0],num_of_nodes,accessed_nodes);
 
 	double min_cost = std::numeric_limits<double>::infinity();
 	return min_cost;
