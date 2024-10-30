@@ -103,7 +103,10 @@ double find_min_count(std::vector<std::vector<vertex_t> > adj_matrix, vertex_t s
 		min_cost += adj_matrix[i][2];
 		//debug statement
 		std::cout << "Got Here " << min_cost << std::endl;
-		return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
+		if(num_of_nodes > accessed_nodes){
+			return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
+			accessed_nodes += 1;
+		}
 		if(num_of_nodes == accessed_nodes){
 			//debug statement
 			std::cout << "Got Here 2" << std::endl;
