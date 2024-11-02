@@ -16,6 +16,7 @@
 #include <cstring>
 #include <tuple>
 
+
 typedef std::size_t vertex_t;
 typedef std::tuple<vertex_t,vertex_t,double> weighted_edge_t;
 
@@ -95,62 +96,40 @@ std::vector<weighted_edge_t> read_graph(const std::string &filename);
  * */
 double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices);
 
-double find_min_count(std::vector<std::vector<vertex_t> > adj_matrix, vertex_t src, int num_of_nodes, int &accessed_nodes){
-	double min_cost = 0;
-	//debug statement
-	for(vertex_t i = src; i < adj_matrix.size();i++){
-		accessed_nodes += 1;
-		min_cost += adj_matrix[i][2];
-		//debug statement
-		std::cout << "Got Here " << min_cost << std::endl;
-		if(num_of_nodes > accessed_nodes){
-			return find_min_count(adj_matrix,adj_matrix[i][1],num_of_nodes,accessed_nodes);
-			accessed_nodes += 1;
-		}
-		if(num_of_nodes == accessed_nodes){
-			//debug statement
-			std::cout << "Got Here 2" << std::endl;
-			break;
-		} else if(num_of_nodes < accessed_nodes || num_of_nodes > accessed_nodes){
-			//debug statement
-			std::cout << "Got Here 3" << std::endl;
-			accessed_nodes--;
-			break;
-		}
-	}
-	return min_cost;
+
+double find_min_count(const std::vector<std::vector<double>>&  adj_matrix,unsigned int n_vertices, vertex_t current_vertice, int marked, vertex_t start_vertice){
+    // Base case: If all cities are marked, return to the start city
+     if (marked == (1 << n_vertices) - 1) {
+        // Check if there's a path from current city back to the start city
+        if (adj_matrix[current_vertice][start_vertice] != std::numeric_limits<double>::infinity()) {
+            return adj_matrix[current_vertice][start_vertice];
+        } else {
+            return std::numeric_limits<double>::infinity();
+        }
+    }
+
+    double minCost = std::numeric_limits<double>::infinity();
+
+    // Explore each city that hasn't been marked
+    for (vertex_t i = 0; i < n_vertices; ++i) {
+        if (!(marked & (1 << i))) {  // Check if `i` is unmarked
+            double cost = adj_matrix[current_vertice][i] + find_min_count(adj_matrix,n_vertices, i, marked | (1 << i), start_vertice);
+            minCost = std::min(minCost, cost);
+        }
+    }
+    return minCost;
 }
 
 double TSP(const std::vector<weighted_edge_t> &edges, unsigned int n_vertices) {
-	
-	std::vector<std::vector<vertex_t> > adj_matrix;
+	std::vector<std::vector<double> > adj_matrix(n_vertices, std::vector<double>(n_vertices, std::numeric_limits<double>::infinity()));
 
-	std::vector<vertex_t> temp_vec_node;
-
-	int num_of_nodes = 0;
 	for(vertex_t i = 0; i < edges.size(); i++){
-		//grabs the src,dst,wt from edges and pushes it into a vector
-		temp_vec_node.push_back(get_source(edges[i]));
-		temp_vec_node.push_back(get_destination(edges[i]));
-		temp_vec_node.push_back(get_weight(edges[i]));
-		//it then pushes that data into a matrix
-		adj_matrix.push_back(temp_vec_node);
-		//quick while command to empty out the vector for the next set of data
-		while(!temp_vec_node.empty()) { temp_vec_node.pop_back(); }
+		adj_matrix[get_source(edges[i])][get_destination(edges[i])] = get_weight(edges[i]);
 	}
-
-	//quick for loop to find the number of nodes in the graph
-	for(vertex_t i = 1; i < adj_matrix.size(); i++){ if(adj_matrix[i][0] != adj_matrix[i-1][0]){ num_of_nodes++; } }
-	int accessed_nodes = 0;
-
-	//debug statement
-
 	
-	//starts out function to find the min cost
-	find_min_count(adj_matrix,adj_matrix[0][0],num_of_nodes,accessed_nodes);
-
-	double min_cost = std::numeric_limits<double>::infinity();
-	return min_cost;
+	vertex_t start_vertice = 0;
+	int marked = 1 << start_vertice;
+	return find_min_count(adj_matrix,n_vertices,start_vertice,marked,start_vertice);
 }
 
 vertex_t get_source(const weighted_edge_t &edg) {
@@ -253,15 +232,15 @@ int main(int argc, char *argv[]) {
 	}
 	else {
 		try {
-			std::vector<weighted_edge_t> edges = read_graph(argv[1]);
-			unsigned int n_vertices = get_vertex_count(edges);
-			double min_cost = TSP(edges, n_vertices);
-			if(min_cost == std::numeric_limits<double>::infinity()) {
-				std::cout << "No Hamiltonian cycle exists." << std::endl;
-			}
-			else {
-				std::cout << min_cost << std::endl;
-			}
+	std::vector<weighted_edge_t> edges = read_graph(argv[1]);
+	unsigned int n_vertices = get_vertex_count(edges);
+	double min_cost = TSP(edges, n_vertices);
+	if(min_cost == std::numeric_limits<double>::infinity()) {
+		std::cout << "No Hamiltonian cycle exists." << std::endl;
+	}
+	else {
+		std::cout << min_cost << std::endl;
+	}
 		}
 		catch (std::exception &ex) {
 			std::cerr << ex.what() << std::endl;

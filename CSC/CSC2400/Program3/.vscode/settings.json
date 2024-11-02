@@ -1,6 +1,7 @@
 {
     "files.associations": {
-        "istream": "cpp",
+        "vector": "cpp",
+        "utility": "cpp",
         "algorithm": "cpp",
         "atomic": "cpp",
         "bit": "cpp",
@@ -24,9 +25,9 @@
         "ios": "cpp",
         "iosfwd": "cpp",
         "iostream": "cpp",
+        "istream": "cpp",
         "iterator": "cpp",
         "limits": "cpp",
-        "list": "cpp",
         "locale": "cpp",
         "memory": "cpp",
         "new": "cpp",
@@ -41,8 +42,6 @@
         "tuple": "cpp",
         "type_traits": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp",
-        "vector": "cpp",
         "xfacet": "cpp",
         "xiosbase": "cpp",
         "xlocale": "cpp",
