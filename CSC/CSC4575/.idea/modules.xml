@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/CSC4575.iml" filepath="$PROJECT_DIR$/.idea/CSC4575.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Correlation_OF_Frequency/Correlation_OF_Frequency.iml" filepath="$PROJECT_DIR$/Correlation_OF_Frequency/Correlation_OF_Frequency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Vigenere_Cipher/Vigenere_Cipher.iml" filepath="$PROJECT_DIR$/Vigenere_Cipher/Vigenere_Cipher.iml" />
+    </modules>
+  </component>
+</project>
